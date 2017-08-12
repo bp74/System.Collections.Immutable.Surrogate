@@ -26,9 +26,11 @@ namespace System.Collections.Immutable
 
         public Type GetSurrogateType(Type targetType)
         {
-            if (surrogateTypes.ContainsKey(targetType))
+            Type surrogateType;
+
+            if (surrogateTypes.TryGetValue(targetType, out surrogateType))
             {
-                return surrogateTypes[targetType];
+                return surrogateType;
             }
 
             var targetTypeInfo = targetType.GetTypeInfo();
@@ -36,7 +38,7 @@ namespace System.Collections.Immutable
             if (targetTypeInfo.IsGenericType && immutableTypes.TryGetValue(targetType.GetGenericTypeDefinition(), out var type))
             {
                 // get the type and the constructor of the generic surrogate type
-                var surrogateType = type.MakeGenericType(targetTypeInfo.GenericTypeArguments);
+                surrogateType = type.MakeGenericType(targetTypeInfo.GenericTypeArguments);
                 var surrogateCtor = surrogateType.GetTypeInfo().DeclaredConstructors.FirstOrDefault(ci => ci.GetParameters().Length == 1);
 
                 // compile a lambda function for the constructor to make it fast!
