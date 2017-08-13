@@ -12,15 +12,15 @@ A SerializationSurrogateProvider for the System.Collection.Immutable types
         var foo = new Foo();
         var fooSerialized = default(byte[]);
         
-        objectUnderTest.List = objectUnderTest.List.Add(1);
-        objectUnderTest.List = objectUnderTest.List.Add(2);
-        objectUnderTest.List = objectUnderTest.List.Add(3);
+        foo.List = foo.List.Add(1);
+        foo.List = foo.List.Add(2);
+        foo.List = foo.List.Add(3);
 
         using (var memoryStream = new MemoryStream())
         {
             var serializer = new DataContractSerializer(typeof(Foo));
             serializer.SetSerializationSurrogateProvider(new ImmutableSurrogateProvider());
-            serializer.WriteObject(memoryStream, obj);
+            serializer.WriteObject(memoryStream, foo);
             fooSerialized = memoryStream.ToArray();
         }
 
