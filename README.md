@@ -26,7 +26,7 @@ A SerializationSurrogateProvider for the System.Collection.Immutable types
 
         using (var memoryStream = new MemoryStream(fooSerialized))
         {
-            var serializer = new DataContractSerializer(typeof(T));
+            var serializer = new DataContractSerializer(typeof(Foo));
             serializer.SetSerializationSurrogateProvider(new ImmutableSurrogateProvider());
             foo = (Foo)serializer.ReadObject(memoryStream);
         }
