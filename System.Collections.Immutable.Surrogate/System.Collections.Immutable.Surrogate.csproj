@@ -3,6 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>System.Collections.Immutable</RootNamespace>
+    <Authors>bp74</Authors>
+    <Company>bp74</Company>
+    <Product />
+    <Description>A SerializationSurrogateProvider for the System.Collection.Immutable types</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/bp74/System.Collections.Immutable.Surrogate</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bp74/System.Collections.Immutable.Surrogate</RepositoryUrl>
+    <PackageTags>DataContract Serialize Immutable Collection</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
