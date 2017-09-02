@@ -1,6 +1,9 @@
 # System.Collections.Immutable.Surrogate
 
-A SerializationSurrogateProvider for the System.Collection.Immutable types
+A SerializationSurrogateProvider for the System.Collection.Immutable types.
+
+Also available as Nuget package:
+<https://www.nuget.org/packages/System.Collections.Immutable.Surrogate/>
 
         [DataContract]
         class Foo
