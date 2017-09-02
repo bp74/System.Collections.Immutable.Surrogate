@@ -11,13 +11,12 @@
     <PackageProjectUrl>https://github.com/bp74/System.Collections.Immutable.Surrogate</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bp74/System.Collections.Immutable.Surrogate</RepositoryUrl>
     <PackageTags>DataContract Serialize Immutable Collection</PackageTags>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <PackageReleaseNotes>Added support for .Net Framework 4.5</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Collections.Immutable" Version="1.4.0" />
-    <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
   </ItemGroup>
  
 </Project>
