@@ -1,4 +1,6 @@
-﻿using System.Collections.Concurrent;
+﻿using System.CodeDom;
+using System.Collections.Concurrent;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -6,7 +8,13 @@ using System.Runtime.Serialization;
 
 namespace System.Collections.Immutable
 {
+#if NETSTANDARD2_0
     public class ImmutableSurrogateProvider : ISerializationSurrogateProvider
+#elif NET45
+    public class ImmutableSurrogateProvider : IDataContractSurrogate
+#else
+    public class ImmutableSurrogateProvider
+#endif
     {
         private delegate object Activator(object arg);
 
@@ -24,7 +32,11 @@ namespace System.Collections.Immutable
 
         //-----------------------------------------------------------------------------------------
 
+#if NETSTANDARD2_0
         public Type GetSurrogateType(Type targetType)
+#elif NET45
+        public Type GetDataContractType(Type targetType)
+#endif
         {
             Type surrogateType;
 
@@ -66,5 +78,34 @@ namespace System.Collections.Immutable
         {
             return activators.TryGetValue(targetType, out var activator) ? activator(obj) : obj;
         }
+
+#if NET45
+
+        public object GetCustomDataToExport(MemberInfo memberInfo, Type dataContractType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object GetCustomDataToExport(Type clrType, Type dataContractType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetKnownCustomDataTypes(Collection<Type> customDataTypes)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Type GetReferencedTypeOnImport(string typeName, string typeNamespace, object customData)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CodeTypeDeclaration ProcessImportedType(CodeTypeDeclaration typeDeclaration, CodeCompileUnit compileUnit)
+        {
+            throw new NotImplementedException();
+        }
+
+#endif
     }
 }
